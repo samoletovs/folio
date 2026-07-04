@@ -1,0 +1,20 @@
+name: folio
+purpose: "Personal, local-first investment portfolio management — decide how to invest and manage already-invested funds, with an AI layer that explains and checks (never trades)."
+users: "A single privacy-conscious EU/Latvia-based investor (personal use)"
+stage: idea
+local_first: true
+domain: null
+off_golden_path: true
+goals:
+  - "One-portfolio view across taxable brokerage, private pension, real estate, and goal/cash funds"
+  - "Adopt-and-extend a mature local-first tracker (Wealthfolio) rather than rebuild the engine"
+  - "Thin AI/skill layer: explain holdings, check the portfolio against an IPS, draft rebalancing for human sign-off — deterministic math stays in code"
+  - "Figures never leave the device; the repo holds code + figure-free docs only"
+similar:
+  - "Wealthfolio"
+  - "Portfolio Performance"
+  - "Ghostfolio"
+  - "beancount / Fava"
+privacy: "Figures live in the OneDrive .me vault (never git). This repo is figure-free. Cloud LLMs only ever see figure-free structure; raw figures use a local model."
+research: "mindVault 02_areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md"
+quality: []

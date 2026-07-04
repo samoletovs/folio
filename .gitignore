@@ -1,0 +1,63 @@
+# folio — figures NEVER enter git. Real data lives in the OneDrive .me vault.
+
+# --- Financial data / figures (belt-and-suspenders: never commit) ---
+*.db
+*.sqlite
+*.sqlite3
+data/
+holdings/
+portfolio/
+statements/
+exports/
+*.csv
+*.tsv
+*.ofx
+*.qfx
+*.qif
+*.private.md
+*-private.md
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Test output
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+.playwright-mcp/
+
+# Build / dependency artifacts (covers most stacks)
+node_modules/
+dist/
+build/
+out/
+.vite/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+target/
+bin/
+obj/
+
+# Scratch (move materials into docs/discovery/, do not commit ad-hoc scratch)
+temp/
+scratch/

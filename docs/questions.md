@@ -17,11 +17,9 @@
 
 ## Design
 
-3. **Form factor: Wealthfolio addon vs. local agent skill.** Lead is the
-   Wealthfolio TypeScript **addon** (native UI, full local data access,
-   OS-keyring). Fallback is a local **skill over a plaintext ledger**
-   (beancount/hledger). Decide at M0. What limits, if any, does the addon SDK
-   impose on custom rebalancing/IPS logic?
+3. **Form factor → RESOLVED (2026-07-05): Wealthfolio addon** (scaffolded at
+   `addon/`; see Resolved). Sub-question carried into build: what limits, if
+   any, does the addon SDK impose on custom rebalancing/IPS logic?
 4. **AI placement: local-only vs. hybrid.** Can the explain/Q&A experience be
    good enough with a **local model only** (Ollama), or is a cloud LLM needed
    for the language quality — and if so, exactly what figure-free structure is
@@ -46,6 +44,10 @@
 
 ## Resolved
 
+- **Form factor → Wealthfolio addon.** (2026-07-05, owner approved the plan's
+  recommendation.) Scaffolded at `addon/` on `@wealthfolio/addon-sdk`; the
+  plaintext-ledger skill remains the documented fallback if the SDK proves
+  limiting.
 - **Delivery posture → local-first, no cloud, no subdomain.** (2026-07-05,
   owner decision.) Figures stay on-device / in the `.me` vault; the repo is
   figure-free; `domain: null`.

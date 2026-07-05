@@ -110,7 +110,8 @@ v1 proves or disproves:
 
 **Recommendation:** start with the **Wealthfolio addon** (rank 1); keep the
 plaintext-ledger skill as the fallback if the addon SDK proves limiting.
-**Decide before build.**
+**DECISION (2026-07-05): Wealthfolio addon chosen and scaffolded at
+[`addon/`](../addon/).**
 
 ---
 

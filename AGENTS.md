@@ -2,10 +2,11 @@
 
 > Project-specific instructions for AI coding agents.
 
-## Phase: 🔍 Discovery
+## Phase: � Build (v1)
 
-**There is no application code yet.** This project is in the discovery phase.
-The deliverables are documents in `docs/`, not code.
+Discovery is closed (owner approved 2026-07-05). folio is being built as a
+**Wealthfolio addon**, scaffolded at [`addon/`](addon/) — TypeScript + Vite +
+React on `@wealthfolio/addon-sdk`. The `docs/` remain the source of intent.
 
 ### Document layout
 
@@ -42,13 +43,13 @@ Mirror of the [Off-the-path projects table](../.github/PLATFORM.md#off-the-path-
 - Let an LLM compute returns, prices, allocations, or tax — **math is code**.
 - Add trade-execution / auto-trading of any kind.
 
-### Do NOT (during discovery specifically)
+### Build phase — where code lives
 
-- Scaffold code (`src/`, `api/`, addon packages, etc.).
-- Finalize the form factor (Wealthfolio addon vs. local agent skill).
-
-The signal to leave discovery is: **`docs/plan.md` is reviewed and approved by
-the owner.** Nothing else.
+- The addon lives in [`addon/`](addon/). Build: `npm install` then
+  `npm run build`. Live-testing needs the Wealthfolio desktop app in addon dev
+  mode (`npm run dev:server`).
+- Keep changes small and testable; wire deterministic math in code and confine
+  the LLM to explanation, per the guardrails above.
 
 ## Discovery loop (when a new file lands in `docs/discovery/`)
 
@@ -76,19 +77,15 @@ the owner.** Nothing else.
   cover investment holdings); 25.5% capital-gains PIT; verify the Latvian
   investment-account deferral regime and 3rd-pillar cap against VID.
 
-## Stack: TBD (leaning local-first)
-
-To be decided in `docs/plan.md`. Leading candidates:
+## Stack: decided — Wealthfolio addon
 
 - **Spine:** Wealthfolio (Rust + Tauri + SQLite, AGPL) run locally.
-- **folio layer:** a Wealthfolio **addon** (TypeScript SDK, full local data
-  access, OS-keyring secrets) *or* a local **agent skill** reading a local
-  ledger. Decide in the plan.
+- **folio layer:** a Wealthfolio **addon** at [`addon/`](addon/) — TypeScript +
+  Vite + React on `@wealthfolio/addon-sdk`, full local data access, OS-keyring
+  secrets.
 - **AI:** local model (Ollama) for figure-touching tasks; cloud LLM only for
   figure-free synthesis.
 - **Market data:** provider/exchange endpoints (figure-free public prices).
-
-But again: **decide in `docs/plan.md`, not here.**
 
 ## Build / Test / Deploy
 

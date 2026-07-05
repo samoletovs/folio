@@ -7,11 +7,13 @@
 A standalone research-driven prototype. Run as an experiment: hypothesis →
 prototype → measure → iterate or kill.
 
-## Status: 🔍 Discovery
+## Status: � Build (v1)
 
-This project is in the **discovery phase**. No application code yet, no stack
-finally committed, **no subdomain — ever**. The deliverables of this phase are
-documents, not applications.
+Discovery is closed. The owner approved the recommendation: **build folio as a
+Wealthfolio addon** (see [`docs/plan.md`](docs/plan.md) §3). The addon is
+scaffolded at [`addon/`](addon/) — TypeScript + Vite + React on
+`@wealthfolio/addon-sdk`. Still **local-first, no cloud, no subdomain — ever**;
+figures never enter git.
 
 - Vision & problem statement → [`docs/vision.md`](docs/vision.md)
 - Build plan (seeded from deep research) → [`docs/plan.md`](docs/plan.md)

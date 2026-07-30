@@ -18,5 +18,5 @@ similar:
   - "Ghostfolio"
   - "beancount / Fava"
 privacy: "Figures live in the OneDrive .me vault (never git). This repo is figure-free. Cloud LLMs only ever see figure-free structure; raw figures use a local model."
-research: "mindVault 02_areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md"
+research: "mindVault areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md"
 quality: []

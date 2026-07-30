@@ -2,7 +2,7 @@
 
 > Drafted 2026-07-05 by agent, seeded from the deep-research report in
 > **mindVault** at
-> `02_areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md`
+> `areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md`
 > (orchestrator-worker method, 6 research threads + 1 verifier).
 > **Awaiting owner review.** Figure-free.
 

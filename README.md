@@ -31,7 +31,7 @@ rebalancing suggestions for the owner to approve.
 
 The design was set by a deep-research report (orchestrator-worker method,
 6 threads + a verifier) that lives in **mindVault** at
-`02_areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md`.
+`areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md`.
 Its verified conclusions:
 
 1. **Adopt-and-extend, don't rebuild.** The deterministic engine

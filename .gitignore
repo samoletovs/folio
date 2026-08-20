@@ -61,3 +61,6 @@ obj/
 # Scratch (move materials into docs/discovery/, do not commit ad-hoc scratch)
 temp/
 scratch/
+
+# Local-only personal-info pattern overrides
+scripts/.leak-patterns.local.txt

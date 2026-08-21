@@ -4,7 +4,7 @@
 > person **before** recommending an allocation, a rebalancing rule, or a tool.
 >
 > **Questions only — never store answers here.** Answers contain personal
-> financial detail and belong in the private `.me` vault (never git), where they
+> financial detail and belong in private local storage (never git), where they
 > compile into the owner's **Investment Policy Statement (IPS)**.
 >
 > Ask **one question at a time**, each with curated options **and** a free-text
@@ -29,7 +29,7 @@ it. Decide the person first; the tool falls out.
 ## Section B — What you hold today (types, not amounts)
 6. **Asset & account types you already have** *(multi-select)* — taxable brokerage/ETFs, individual stocks, 3rd-pillar pension, 2nd-pillar pension, home you live in, rental property, cash/deposits, crypto, private business, other.
 7. **How many institutions/accounts** — 1–2 / 3–4 / 5+ *(sets how much aggregation the tool must do).*
-8. *(Optional, private)* **Rough total invested** — skip / under €50k / €50–150k / €150–500k / €500k+ *(only a band, only to right-size advice; stored in `.me` only).*
+8. *(Optional, private)* **Rough total invested** — skip / under €50k / €50–150k / €150–500k / €500k+ *(only a band, only to right-size advice; stored locally only).*
 
 ## Section C — Where you're going (goals & horizons)
 9. **Top goals for this money** *(multi-select)* — long-term wealth/retirement, kids' future/education, buy or upgrade property, passive income, financial independence / early retirement, capital preservation, learning & experimenting.
@@ -51,7 +51,7 @@ it. Decide the person first; the tool falls out.
 21. **The #1 thing you want folio to do for you** *(free text)* — e.g. "tell me if I'm on track", "one clear picture", "suggest rebalancing", "explain in plain language", "help with tax".
 
 ## Output
-Compile answers in the private `.me` vault into an **Investment Policy
+Compile answers in private local storage into an **Investment Policy
 Statement**: target allocation, rebalancing bands (5/25), cost ceiling, per-goal
 horizons, and a one-line tool decision (adopt Wealthfolio desktop / self-host
 web / build minimal). **Never commit any answer or figure to git.**

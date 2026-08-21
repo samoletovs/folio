@@ -21,7 +21,7 @@ Influenced: `vision.md` §<section>, `glossary.md` (added: …), `questions.md` 
 
 ## 2026-07-05 — Deep-research report: local-first portfolio management
 
-**Source:** mindVault `areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md`
+**Source:** Internal deep-research report on local-first portfolio management
 **Provided by:** agent research (orchestrator-worker `/dig`, 6 threads + verifier).
 
 The founding document. Verified conclusions: (1) **adopt-and-extend** a mature

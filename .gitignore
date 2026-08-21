@@ -1,4 +1,4 @@
-# folio — figures NEVER enter git. Real data lives in the OneDrive .me vault.
+# folio - figures NEVER enter git. Real data stays in private local storage.
 
 # --- Financial data / figures (belt-and-suspenders: never commit) ---
 *.db

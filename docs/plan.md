@@ -1,8 +1,6 @@
 # folio — Build Plan
 
-> Drafted 2026-07-05 by agent, seeded from the deep-research report in
-> **mindVault** at
-> `areas/agents/research/2026-07-05-local-first-investment-portfolio-management.md`
+> Drafted 2026-07-05 by agent, seeded from an internal deep-research report
 > (orchestrator-worker method, 6 research threads + 1 verifier).
 > **Awaiting owner review.** Figure-free.
 
@@ -28,7 +26,7 @@ explains; nothing auto-trades; figures never leave the device.**
 - **One-portfolio view** wiring in private pension, real estate (mark-to-model),
   and goal/cash funds alongside brokerage.
 - A **written IPS** (target allocation, 5/25 bands, cost ceiling, per-goal
-  horizons) authored/maintained with AI help — the IPS **file lives in `.me`**.
+  horizons) authored/maintained with AI help - the IPS stays in private local storage.
 - A **folio layer** (form factor decided in §3) that:
   - explains holdings / performance in plain language (numbers from the engine),
   - **checks** current allocation vs. the IPS and flags drift ≥ 5/25 bands,
@@ -78,7 +76,7 @@ v1 proves or disproves:
  │                                                           │
  │   Broker exports (IBKR Flex / CSV)  ──►  Wealthfolio      │
  │                                          (Rust+Tauri,      │
- │   .me vault: IPS + figures ──────────►    SQLite on disk,  │
+ │   Private IPS + figures ─────────────►    SQLite on disk,  │
  │                                           TWR/MWR engine,  │
  │                                           OS-keyring)      │
  │                                              │ local data  │

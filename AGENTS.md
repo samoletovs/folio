@@ -13,7 +13,7 @@ React on `@wealthfolio/addon-sdk`. The `docs/` remain the source of intent.
 - `docs/vision.md` — problem statement, method, success criteria. Kept in sync
   as discovery deepens.
 - `docs/plan.md` — architecture & build plan, seeded from the deep-research
-  report in mindVault. Awaiting owner review.
+  internal research report. Awaiting owner review.
 - `docs/glossary.md` — domain terms (IPS, TWR/MWR, rebalancing, asset
   location, tax lot, TER, PSD2, UCITS, 3rd pillar, investment account, …).
 - `docs/questions.md` — open questions, with a **Resolved** section.
@@ -29,7 +29,7 @@ This is intentional and must not be "corrected" back onto the path.
 |-----------|--------|
 | **No Azure hosting, no `*.naurolabs.com` subdomain, `domain: null`** | Personal finance tool — real figures must stay on-device (never cloud). |
 | **Local-first desktop/CLI, not a Static Web App** | Adopts/extends a local-first tracker (Wealthfolio) instead of an SWA. |
-| **Figures live in the OneDrive `.me` vault, never in git** | Privacy: the repo is figure-free; data never enters version control. |
+| **Figures stay in private local storage, never in git** | Privacy: the repo is figure-free; data never enters version control. |
 | **Cloud LLM optional and figure-free only** | AI may explain figure-free structure; raw figures use a local model. |
 
 Mirror of the [Off-the-path projects table](../.github/PLATFORM.md#off-the-path-projects-today).

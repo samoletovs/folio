@@ -13,11 +13,10 @@
 > who's on your side.
 
 ## Why this comes first
-Tools and code are downstream of the person. The same answers that shape the IPS
-(allocation, rebalancing bands, risk, horizons) also settle **"do we need
-Wealthfolio desktop or build our own?"** — because the right tool depends on how
-many accounts you hold, how hands-on you want to be, and where you want to use
-it. Decide the person first; the tool falls out.
+Tools and code are downstream of the person. These answers shape the IPS
+(allocation, rebalancing bands, risk, horizons) and the workflow within the
+standalone local folio app, with Wealthfolio now optional. They do not reopen the settled
+local-only delivery posture or authorize cloud financial-data processing.
 
 ## Section A — Your snapshot (the foundation)
 1. **Life stage** — 20s / 30s / 40s / 50s / 60+ *(sets your time horizon and how much risk your timeline can absorb).*
@@ -46,12 +45,13 @@ it. Decide the person first; the tool falls out.
 ## Section E — Preferences & the tool (folio)
 17. **Tax wrappers** — using 3rd pillar + investment account to the limit / partially / not yet / not sure what these are.
 18. **Ethical/thematic preferences** — none / ESG-sustainable tilt / avoid certain sectors / specific themes.
-19. **Where you'd use folio** — desktop app / local web in a browser / phone / minimal (spreadsheet/CLI) / no preference.
-20. **Automation vs. privacy** — auto-sync from brokers (some cloud) / manual CSV import (max privacy) / a mix — *the real input to "Wealthfolio desktop vs. build our own".*
+19. **How you'd review the local portfolio** — quick drift review / detailed account review / contribution planning / a mix.
+20. **Import workflow** — manual broker CSV / locally downloaded broker export / not decided. Cloud financial-data processing is not an option.
 21. **The #1 thing you want folio to do for you** *(free text)* — e.g. "tell me if I'm on track", "one clear picture", "suggest rebalancing", "explain in plain language", "help with tax".
 
 ## Output
 Compile answers in private local storage into an **Investment Policy
 Statement**: target allocation, rebalancing bands (5/25), cost ceiling, per-goal
-horizons, and a one-line tool decision (adopt Wealthfolio desktop / self-host
-web / build minimal). **Never commit any answer or figure to git.**
+horizons, and a local review/import workflow. The primary tool is standalone
+folio; the Wealthfolio addon is optional.
+**Never commit any answer or figure to git.**

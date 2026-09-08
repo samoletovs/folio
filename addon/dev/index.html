@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>folio - synthetic local preview</title>
+    <style>
+      body { margin: 0; font-family: system-ui, sans-serif; color: #172033; background: #fff; }
+      #preview-controls { padding: 1rem 2rem; background: #eef3f1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; border-bottom: 1px solid #bacbc4; }
+      #preview-controls button { padding: .5rem .75rem; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <div id="preview-controls">
+      <strong>Synthetic preview - no real accounts or holdings</strong>
+      <button id="host-update">Simulate portfolio update</button>
+      <button id="host-toggle">Disable addon</button>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

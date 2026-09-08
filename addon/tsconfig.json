@@ -8,7 +8,9 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": ["node", "react", "react-dom"]
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": ["node", "react", "react-dom", "vite/client"]
   },
-  "include": ["src"]
+  "include": ["src", "tests", "dev"]
 }

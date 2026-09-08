@@ -16,6 +16,9 @@ exports/
 *.qif
 *.private.md
 *-private.md
+*.private.json
+*.folio-ips.json
+*.ips.json
 
 # Env / secrets
 .env
@@ -44,6 +47,7 @@ playwright-report/
 # Build / dependency artifacts (covers most stacks)
 node_modules/
 dist/
+dist-web/
 build/
 out/
 .vite/

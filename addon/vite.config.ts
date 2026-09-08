@@ -3,7 +3,10 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import externalGlobals from 'rollup-plugin-external-globals';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => mode === 'standalone' ? {
+  plugins: [react()],
+  build: { outDir: 'dist-web', sourcemap: false },
+} : {
   plugins: [react(), tailwindcss()],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),

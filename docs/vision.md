@@ -59,14 +59,17 @@ kept in the `.me` vault (it contains numbers). folio reads and enforces it.
 retrieval with verifiable citations; the model is confined to the owner's own
 local data and abstains when unsure.
 
-## Approach: adopt-and-extend
+## Approach: standalone snapshots, optional host integration
 
-folio does **not** rebuild the portfolio engine. The verified research
-recommendation is to adopt **Wealthfolio** — a mature local-first tracker
-(on-device SQLite, no cloud, no account, AGPL, TypeScript addon SDK, OS-keyring
-secrets, true TWR/MWR) — and add a **thin folio layer**: either a Wealthfolio
-addon or a local agent skill that reads a local ledger. Form factor is decided
-in [`plan.md`](plan.md).
+The owner chose standalone folio on 2026-09-08, without requiring Wealthfolio.
+The local app records accounts, manually valued holdings and cash, imports
+generic account CSV snapshots, and preserves dated copies. It reuses the
+deterministic IPS and contribution layer.
+
+folio still does **not** rebuild a transaction, tax, or performance-return
+engine. Snapshot changes are not returns. Wealthfolio remains an optional
+read-only integration for its established engine, not a prerequisite for
+using folio. See [`standalone.md`](standalone.md) and [`plan.md`](plan.md).
 
 ## EU / Latvia context
 

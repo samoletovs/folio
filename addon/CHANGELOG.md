@@ -1,38 +1,25 @@
 # Changelog
 
-All notable changes to the folio addon will be documented in this file.
+## Unreleased
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+- Standalone local portfolio app, independent of Wealthfolio installation:
+  accounts, manual holdings/cash/valuations, per-account CSV preview/replacement,
+  and dated snapshot history.
+- Encrypted whole-workspace persistence and backup/restore, with a loopback-only
+  production server. No financial-data server endpoints or return calculations.
+- Shared authenticated-encryption and revision-safe storage primitives, retaining
+  compatibility with the optional addon's IPS-only backups.
 
-## [Unreleased]
+- Read-only Wealthfolio account and valuation adapter with explicit data issues.
+- Versioned IPS editor, passphrase-encrypted local storage, and private
+  import/encrypted export.
+- Deterministic allocation drift, protected/observation-only exclusions, and
+  weighted TER with explicit unknown-cost coverage.
+- Goal- and emergency-fund-gated, new-cash-only contribution drafts.
+- Optional loopback-only Ollama fact retrieval with cloud-disabled preflight,
+  validated citations, cancellation, and no model-produced arithmetic.
+- Portable package scripts, build-only CI, local audit setup, and generated-data
+  development preview.
 
-### Added
-- Initial addon structure and setup
-
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-
-## [1.0.0] - {{currentDate}}
-
-### Added
-- Initial release of folio addon
-- Basic addon functionality and core features
-- Integration with Wealthfolio addon SDK v1.0.0
-- Sidebar navigation integration for easy access
-- Responsive design for all screen sizes
-
-### Features
-- Local-first IPS-aware companion for Wealthfolio: explains holdings, checks allocation against your Investment Policy Statement, and drafts rebalancing for sign-off. Never trades.
-- User-friendly interface
-- Compatible with Wealthfolio platform
-
-### Permissions
-- UI components access for sidebar and routing
+No published feature release is implied. Desktop acceptance remains a local
+step on the owner's installed Wealthfolio version.

@@ -1,0 +1,77 @@
+.folio {
+  --folio-line: color-mix(in srgb, currentColor 22%, transparent);
+  --folio-wash: color-mix(in srgb, currentColor 5%, transparent);
+  --folio-error: #a5261a;
+  --folio-warning: #875000;
+  --folio-focus: #2563eb;
+  font: inherit;
+  color: inherit;
+  max-width: 86rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  line-height: 1.55;
+}
+.dark .folio { --folio-error: #ffb4a9; --folio-warning: #f9c66b; --folio-focus: #93b4ff; }
+.folio * { box-sizing: border-box; }
+.folio h1, .folio h2, .folio h3, .folio p { margin: 0; }
+.folio h1 { font-size: 1.8rem; font-weight: 650; letter-spacing: -.025em; }
+.folio h2 { font-size: 1.3rem; font-weight: 650; letter-spacing: -.015em; }
+.folio h3 { font-size: 1rem; font-weight: 650; }
+.folio p { max-width: 72ch; margin-top: .6rem; }
+.folio .folio-header { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--folio-line); }
+.folio .folio-header p { margin-top: .15rem; }
+.folio section { padding: 2rem 0; border-bottom: 1px solid var(--folio-line); }
+.folio .folio-welcome { max-width: 48rem; padding-top: 2.5rem; }
+.folio .folio-section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
+.folio .folio-stack { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+.folio .folio-actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.folio button, .folio input, .folio select, .folio textarea { font: inherit; line-height: 1.4; }
+.folio button { border: 1px solid var(--folio-line); border-radius: .4rem; padding: .6rem 1rem; cursor: pointer; font-weight: 600; background: #1d4b43; color: #fff; min-height: 2.75rem; }
+.folio button:hover:not(:disabled) { background: #163c35; }
+.folio button.folio-secondary { background: transparent; color: inherit; font-weight: 500; }
+.folio button.folio-secondary:hover:not(:disabled) { background: var(--folio-wash); }
+.folio button:disabled { opacity: .5; cursor: not-allowed; }
+.folio :focus-visible { outline: 2px solid var(--folio-focus); outline-offset: 3px; }
+.folio label { display: flex; flex-direction: column; gap: .4rem; font-size: .9rem; font-weight: 550; min-width: 0; }
+.folio input:not([type="checkbox"]), .folio select, .folio textarea { display: block; width: 100%; min-width: 0; border: 1px solid var(--folio-line); padding: .6rem .7rem; min-height: 2.75rem; border-radius: .35rem; background: transparent; color: inherit; font-weight: 400; }
+.folio select option { background: Canvas; color: CanvasText; }
+.folio input::placeholder, .folio textarea::placeholder { color: inherit; opacity: .7; }
+.folio input[type="file"] { padding: .5rem; }
+.folio input[type="checkbox"] { width: 1.1rem; height: 1.1rem; flex-shrink: 0; accent-color: #1d4b43; }
+.folio textarea { resize: vertical; min-height: 6rem; }
+.folio .folio-check { flex-direction: row; align-items: center; gap: .6rem; font-weight: 400; }
+.folio .folio-error { color: var(--folio-error); }
+.folio .folio-warning { color: var(--folio-warning); }
+.folio .folio-note, .folio small, .folio footer { font-size: .85rem; }
+.folio small { display: block; margin-top: .35rem; font-weight: 400; overflow-wrap: anywhere; }
+.folio .folio-notice { margin: 1.25rem 0; padding: 1rem 1.25rem; background: var(--folio-wash); border: 1px solid var(--folio-line); border-radius: .4rem; }
+.folio ul { margin: .75rem 0; padding-left: 1.5rem; }
+.folio .folio-totals { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; margin: 1.75rem 0; }
+.folio dt { font-size: .85rem; }
+.folio dd { margin: .25rem 0 0; font-size: 1.15rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.folio .folio-table-wrap { width: 100%; overflow-x: auto; margin-top: 1.25rem; }
+.folio table { width: 100%; min-width: 44rem; border-collapse: collapse; font-size: .9rem; }
+.folio caption { text-align: left; padding-bottom: .6rem; font-size: .85rem; }
+.folio th, .folio td { text-align: right; padding: .8rem .75rem; border-bottom: 1px solid var(--folio-line); font-variant-numeric: tabular-nums; vertical-align: top; }
+.folio th:first-child { text-align: left; min-width: 11rem; }
+.folio thead th { background: var(--folio-wash); font-size: .8rem; font-weight: 550; white-space: nowrap; }
+.folio tbody th { font-weight: 550; overflow-wrap: break-word; }
+.folio .folio-contribution-form { display: grid; grid-template-columns: minmax(10rem, 1fr) minmax(14rem, 1.4fr) auto; align-items: end; gap: 1rem; max-width: 55rem; margin-top: 1.25rem; }
+.folio fieldset { min-width: 0; border: 1px solid var(--folio-line); border-radius: .4rem; padding: 1.25rem; margin: 0; }
+.folio legend { padding: 0 .4rem; font-weight: 650; }
+.folio fieldset > .folio-check { margin-top: .75rem; }
+.folio .folio-edit-row { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--folio-line); margin-bottom: 1rem; }
+.folio .folio-edit-row > label { flex: 1 1 10rem; }
+.folio .folio-edit-row > strong { flex: 1 1 12rem; align-self: center; overflow-wrap: anywhere; }
+.folio details { padding: .9rem 0; border-bottom: 1px solid var(--folio-line); }
+.folio summary { cursor: pointer; font-weight: 550; padding: .25rem 0; }
+.folio details article { margin-top: 1.5rem; }
+.folio footer { padding-top: 1.5rem; }
+.folio footer button { margin-top: 1rem; }
+@media (max-width: 700px) {
+  .folio .folio-header { align-items: flex-start; flex-direction: column; }
+  .folio .folio-contribution-form { grid-template-columns: 1fr; }
+  .folio .folio-totals { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .folio .folio-edit-row > label, .folio .folio-edit-row > strong { flex-basis: 100%; }
+  .folio th, .folio td { padding: .7rem .5rem; }
+}

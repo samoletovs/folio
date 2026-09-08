@@ -1,0 +1,7 @@
+:root { font-family: system-ui, sans-serif; color: #172033; background: #fff; color-scheme: light; }
+body { margin: 0; }
+.folio .folio-nav { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 1rem; }
+.folio .folio-nav [aria-current="page"] { background: var(--folio-wash); border-color: currentColor; font-weight: 650; }
+.folio .folio-row-actions { display: flex; justify-content: flex-end; gap: .4rem; }
+.folio .folio-row-actions button { padding: .4rem .6rem; font-size: .8rem; min-height: 2.5rem; }
+.folio .folio-editor { max-width: 68rem; }

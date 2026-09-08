@@ -20,10 +20,9 @@
 3. **Form factor → RESOLVED (2026-07-05): Wealthfolio addon** (scaffolded at
    `addon/`; see Resolved). Sub-question carried into build: what limits, if
    any, does the addon SDK impose on custom rebalancing/IPS logic?
-4. **AI placement: local-only vs. hybrid.** Can the explain/Q&A experience be
-   good enough with a **local model only** (Ollama), or is a cloud LLM needed
-   for the language quality — and if so, exactly what figure-free structure is
-   safe to send?
+4. **AI usefulness, not cloud placement.** The first implementation uses only
+   local Ollama to select code-produced explanations. Does that retrieval help
+   more than the deterministic explanations alone? Cloud wiring is deferred.
 5. **Real-estate & pension modeling.** How to represent illiquid real estate
    (mark-to-model, excluded from rebalancing) and a private pension in a
    single allocation view without distorting drift math?
@@ -37,14 +36,29 @@
 
 8. **Rebalancing draft UX.** How should folio present a "new-cash-first"
    rebalancing draft so the owner can approve/adjust quickly?
-9. **IPS format.** What machine-readable shape should the IPS take (lives in
-   `.me`) so folio can check drift deterministically?
+9. **IPS format → RESOLVED (2026-09-07).** Versioned JSON with runtime
+   validation, encrypted local persistence and manual vault import/export; see
+   `ips-format.md`. A private desktop round-trip remains an acceptance step.
 
 ---
 
 ## Resolved
 
-- **Form factor → Wealthfolio addon.** (2026-07-05, owner approved the plan's
+- **Standalone usage → holdings snapshots first.** (2026-09-08, owner selected.)
+  folio runs locally without Wealthfolio installation, tracking accounts,
+  holdings, cash, manual valuations and generic CSV snapshots. The adapter
+  remains optional; full transaction accounting and returns are deferred.
+  See `standalone.md`.
+
+- **IPS persistence → passphrase-encrypted local addon storage.** (2026-09-07,
+  owner selected.) AES-GCM encrypted IndexedDB with manual private import and
+  encrypted export. No automatic vault reader, host database writes, or
+  persisted passphrase. The schema is documented in `ips-format.md`.
+- **Delivery order → deterministic drafts before AI.** (2026-09-07, owner
+  authorized the review's proposed sequence.) Local explanations are optional;
+  tax, cloud AI, and broker automation are deferred.
+
+- **Original form factor → Wealthfolio addon; now optional.** (2026-07-05, owner approved the plan's
   recommendation.) Scaffolded at `addon/` on `@wealthfolio/addon-sdk`; the
   plaintext-ledger skill remains the documented fallback if the SDK proves
   limiting.

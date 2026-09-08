@@ -4,16 +4,21 @@
 
 ## Phase: � Build (v1)
 
-Discovery is closed (owner approved 2026-07-05). folio is being built as a
-**Wealthfolio addon**, scaffolded at [`addon/`](addon/) — TypeScript + Vite +
-React on `@wealthfolio/addon-sdk`. The `docs/` remain the source of intent.
+Discovery is closed. On 2026-09-08 the owner chose a **standalone local folio
+app with holdings snapshots**, without requiring a Wealthfolio installation.
+Shared TypeScript + Vite + React code remains at [`addon/`](addon/); the
+Wealthfolio adapter is optional. Do not rebuild a transaction/return engine.
+Deterministic IPS review, encrypted portfolio storage, contribution drafts and
+optional local fact retrieval are implemented. `docs/` remain the source of intent.
 
 ### Document layout
 
 - `docs/vision.md` — problem statement, method, success criteria. Kept in sync
   as discovery deepens.
-- `docs/plan.md` — architecture & build plan, seeded from the deep-research
-  internal research report. Awaiting owner review.
+- `docs/plan.md` — approved architecture and build sequence, seeded from the
+  deep-research report and updated for implementation.
+- `docs/ips-format.md` — versioned private IPS structure and calculation contract.
+- `docs/standalone.md` — standalone snapshots, local runtime, CSV format and backups.
 - `docs/glossary.md` — domain terms (IPS, TWR/MWR, rebalancing, asset
   location, tax lot, TER, PSD2, UCITS, 3rd pillar, investment account, …).
 - `docs/questions.md` — open questions, with a **Resolved** section.
@@ -28,7 +33,7 @@ This is intentional and must not be "corrected" back onto the path.
 | Deviation | Reason |
 |-----------|--------|
 | **No Azure hosting, no `*.naurolabs.com` subdomain, `domain: null`** | Personal finance tool — real figures must stay on-device (never cloud). |
-| **Local-first desktop/CLI, not a Static Web App** | Adopts/extends a local-first tracker (Wealthfolio) instead of an SWA. |
+| **Local-only browser app, not a hosted Static Web App** | Serves assets on loopback; encrypted data stays in the browser. Wealthfolio is optional. |
 | **Figures stay in private local storage, never in git** | Privacy: the repo is figure-free; data never enters version control. |
 | **Cloud LLM optional and figure-free only** | AI may explain figure-free structure; raw figures use a local model. |
 
@@ -45,9 +50,9 @@ Mirror of the [Off-the-path projects table](../.github/PLATFORM.md#off-the-path-
 
 ### Build phase — where code lives
 
-- The addon lives in [`addon/`](addon/). Build: `npm install` then
-  `npm run build`. Live-testing needs the Wealthfolio desktop app in addon dev
-  mode (`npm run dev:server`).
+- Shared code lives in [`addon/`](addon/). Standalone: `npm ci`,
+  `npm run build:standalone`, `npm start`; open `http://127.0.0.1:4179/`.
+  Optional addon: `npm run bundle`; host development uses `npm run dev:server`.
 - Keep changes small and testable; wire deterministic math in code and confine
   the LLM to explanation, per the guardrails above.
 
@@ -64,8 +69,10 @@ Mirror of the [Off-the-path projects table](../.github/PLATFORM.md#off-the-path-
 
 ## Known framing (already established by the research — do not re-derive)
 
-- **Adopt-and-extend Wealthfolio** as the local-first spine; folio is the thin
-  AI/rule layer on top. Rebuilding the engine is rejected.
+- **Standalone snapshots, optional Wealthfolio integration.** Reuse the rule
+  engine and accept manual base-currency valuations. Rebuilding an accounting,
+  FX or performance-return engine remains rejected; use an established engine
+  if those capabilities become necessary.
 - **AI explains and checks; deterministic code computes.** No LLM math, no
   live-price trust, no auto-trading. Human-in-the-loop for every action.
 - **IPS-first.** The owner's Investment Policy Statement (target allocation,
@@ -77,17 +84,26 @@ Mirror of the [Off-the-path projects table](../.github/PLATFORM.md#off-the-path-
   cover investment holdings); 25.5% capital-gains PIT; verify the Latvian
   investment-account deferral regime and 3rd-pillar cap against VID.
 
-## Stack: decided — Wealthfolio addon
+## Stack: standalone snapshots plus optional Wealthfolio addon
 
-- **Spine:** Wealthfolio (Rust + Tauri + SQLite, AGPL) run locally.
-- **folio layer:** a Wealthfolio **addon** at [`addon/`](addon/) — TypeScript +
-  Vite + React on `@wealthfolio/addon-sdk`, full local data access, OS-keyring
-  secrets.
+- **Standalone:** React + Vite, Node loopback static server, Web Crypto and
+  IndexedDB for encrypted local workspace data.
+- **Optional host:** Wealthfolio SDK 2 read-only adapter over local host data.
 - **AI:** local model (Ollama) for figure-touching tasks; cloud LLM only for
   figure-free synthesis.
 - **Market data:** provider/exchange endpoints (figure-free public prices).
 
 ## Build / Test / Deploy
 
-_No deploy — ever. This runs locally. "Build" during discovery is writing docs
-in `docs/`. Local build/test commands are filled in once the plan is approved._
+No deploy, ever. In `addon/`, use `npm ci`, `npm run type-check`, `npm test`,
+and `npm run bundle`. Tests construct synthetic data only. `npm run dev:preview`
+is a generated-data browser host; real Wealthfolio acceptance uses
+`npm run dev:server` and the steps in `addon/README.md`.
+
+The standalone portfolio (including its IPS and recorded snapshots) is encrypted
+in local IndexedDB with manual encrypted backup/restore. The addon keeps its
+separate IPS-only store. Do not add plaintext persistence, automatic remote
+fallback, or direct access to the Wealthfolio database. Keep business-rule code
+independent of React and SDK runtime imports. Agents must use synthetic data
+and isolated origins/profiles for browser work; never inspect a real portfolio
+page or statement through cloud-agent tools.

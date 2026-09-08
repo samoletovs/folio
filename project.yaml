@@ -2,14 +2,14 @@ name: folio
 purpose: "Personal, local-first investment portfolio management — decide how to invest and manage already-invested funds, with an AI layer that explains and checks (never trades)."
 users: "A single privacy-conscious EU/Latvia-based investor (personal use)"
 stage: build
-form_factor: wealthfolio-addon
+form_factor: standalone-local-browser
 addon_path: addon/
 local_first: true
 domain: null
 off_golden_path: true
 goals:
   - "One-portfolio view across taxable brokerage, private pension, real estate, and goal/cash funds"
-  - "Adopt-and-extend a mature local-first tracker (Wealthfolio) rather than rebuild the engine"
+  - "Track manual holdings snapshots independently, retaining Wealthfolio as an optional adapter without rebuilding a return/accounting engine"
   - "Thin AI/skill layer: explain holdings, check the portfolio against an IPS, draft rebalancing for human sign-off — deterministic math stays in code"
   - "Figures never leave the device; the repo holds code + figure-free docs only"
 similar:
@@ -19,4 +19,7 @@ similar:
   - "beancount / Fava"
 privacy: "Figures stay in private local storage (never git). This repo is figure-free. Cloud LLMs only ever see figure-free structure; raw figures use a local model."
 research: "Internal deep-research report on local-first investment portfolio management"
-quality: []
+quality:
+  - "Deterministic generated-data regression coverage"
+  - "Windows/Linux build-only CI; standalone and addon builds"
+  - "Encrypted local portfolio storage and explicit backup/restore"

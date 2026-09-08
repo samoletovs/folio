@@ -5,13 +5,54 @@
   "description": "Local-first IPS-aware companion for Wealthfolio: explains holdings, checks allocation against your Investment Policy Statement, and drafts rebalancing for sign-off. Never trades.",
   "author": "samoletovs",
   "main": "dist/addon.js",
-  "sdkVersion": "1.0.0",
+  "sdkVersion": "2.0.0",
+  "minWealthfolioVersion": "2.0.0",
   "enabled": true,
   "permissions": [
     {
       "category": "ui",
-      "functions": ["sidebar.addItem"],
-      "purpose": "Add navigation items to the sidebar"
+      "functions": [
+        { "name": "sidebar.addItem", "isDeclared": true, "isDetected": false },
+        { "name": "router.add", "isDeclared": true, "isDetected": false }
+      ],
+      "purpose": "Show the local folio page and its sidebar entry"
+    },
+    {
+      "category": "accounts",
+      "functions": [
+        { "name": "getAll", "isDeclared": true, "isDetected": false }
+      ],
+      "purpose": "Read accounts for the owner's local portfolio review"
+    },
+    {
+      "category": "portfolio",
+      "functions": [
+        { "name": "getHoldings", "isDeclared": true, "isDetected": false }
+      ],
+      "purpose": "Read holdings for deterministic, on-device IPS checks"
+    },
+    {
+      "category": "settings",
+      "functions": [
+        { "name": "get", "isDeclared": true, "isDetected": false }
+      ],
+      "purpose": "Read the host's base currency without changing settings"
+    },
+    {
+      "category": "events",
+      "functions": [
+        { "name": "onUpdateStart", "isDeclared": true, "isDetected": false },
+        { "name": "onUpdateComplete", "isDeclared": true, "isDetected": false },
+        { "name": "onUpdateError", "isDeclared": true, "isDetected": false }
+      ],
+      "purpose": "Keep read-only snapshots in sync with host portfolio updates"
+    },
+    {
+      "category": "files",
+      "functions": [
+        { "name": "openSaveDialog", "isDeclared": true, "isDetected": false }
+      ],
+      "purpose": "Let the owner explicitly export an encrypted IPS to a private location"
     }
   ],
   "keywords": ["wealthfolio", "addon"],

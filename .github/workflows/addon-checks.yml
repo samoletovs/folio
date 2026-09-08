@@ -1,0 +1,48 @@
+name: Addon checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: addon-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    defaults:
+      run:
+        working-directory: addon
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.18.0'
+          cache: npm
+          cache-dependency-path: addon/package-lock.json
+      - name: Reject tracked financial data names, including history
+        run: npm run check:tracked-data
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Type-check
+        run: npm run type-check
+      - name: Test generated fixtures and delivery guards
+        run: npm test
+      - name: Build and package public files only
+        run: npm run bundle
+      - name: Verify the resulting archive
+        run: npm run validate:package
+      - name: Build the standalone local app (no deployment)
+        run: npm run build:standalone

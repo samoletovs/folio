@@ -1,57 +1,82 @@
 # folio
 
-> Personal, **local-first** investment portfolio management - decide how to
-> invest new money and manage already-invested funds, with a thin AI layer
-> that **explains and checks, but never trades**.
+A **standalone, local-only portfolio tracker** for accounts, investments, cash,
+manual valuations, and Investment Policy Statement (IPS) reviews.
+Wealthfolio is optional, not required.
 
-## Research question
+## Run your own folio
 
-folio tests the nauroLabs question **"What's worth selling?"** by asking whether
-privacy itself is valuable: can a useful AI-assisted portfolio tool keep every
-financial figure on the user's device?
+Use Node.js 22.18 or later. The shared application code currently lives in
+`addon/`; the directory name does not mean you need to install Wealthfolio.
 
-## What it does
-
-folio is a Wealthfolio addon for seeing
-one portfolio across taxable brokerage, private pension, real estate, and
-goal/cash funds. It explains holdings, checks the portfolio against a written
-Investment Policy Statement (IPS), and drafts
-rebalancing suggestions for the owner to approve.
-
-The deterministic Wealthfolio engine owns positions, tax lots, currency
-conversion, and return calculations. folio adds a thin explanation and
-rule-checking layer. It does not calculate with an LLM and never executes trades.
-
-## Stack
-
-- Wealthfolio addon SDK
-- React 19, TypeScript, Vite
-- Wealthfolio's local SQLite data store and OS keyring
-- Optional local model for figure-touching explanations
-
-## Run locally
-
-```bash
+```powershell
 cd addon
-npm install
+npm ci
+npm run build:standalone
+npm start
+```
+
+Open **http://127.0.0.1:4179/** in your browser. The server binds only to loopback
+and serves built application files. It has no financial-data upload endpoint.
+Stopping the server does not delete the encrypted browser data.
+
+Create an encrypted portfolio with a passphrase, add accounts, and record
+holdings or cash values. All values must already be in your selected base
+currency; folio does not fetch or infer quotes or exchange rates.
+
+## Implemented
+
+- Create and rename accounts; add, update, and remove current holdings, cash,
+  private pension, and manually valued real estate.
+- Preview and import a generic CSV snapshot for one account, explicitly
+  replacing its current holdings rather than duplicating them.
+- Preserve up to 50 dated snapshots, independent of later edits. These are
+  recorded values, **not investment performance returns**.
+- Define a private IPS, classify holdings, review allocation drift and known
+  TER, and draft goal-gated, new-cash contributions.
+- Encrypt the whole workspace in local browser storage and export/restore an
+  encrypted backup. No passphrase is persisted.
+- Optionally ask local Ollama to select relevant code-produced explanations,
+  with cloud-disabled preflight and no model arithmetic.
+
+See [the standalone guide](docs/standalone.md) for the CSV format, storage
+boundaries and recovery, and [the IPS format](docs/ips-format.md) for policy rules.
+
+## Privacy and limits
+
+Use the **same browser profile and exact local address** each time. Browser
+storage is origin-specific: changing the hostname, port, or profile opens a
+different store. Clearing browser data can delete the saved workspace.
+Export encrypted backups to private storage outside the repository.
+
+Actual financial data belongs in the local UI only: **never in git, CI,
+screenshots shared with an agent, or this project's chat**. Encryption protects
+saved records, not an unlocked browser or compromised device. Use full-disk
+encryption and trusted browser extensions.
+
+No cloud hosting, brokerage connection, trade execution, tax engine,
+transaction ledger, live prices, or performance-return calculation is included.
+
+## Development and optional Wealthfolio addon
+
+```powershell
+cd addon
+npm run dev:standalone
 npm run type-check
-npm run build
+npm test
 ```
 
-To load it in Wealthfolio's addon development mode:
+Stop the production server before using the development server on the same
+port. For development with generated data, use a separate browser profile;
+never inspect real financial data through cloud-agent browser tools.
 
-```bash
-npm run dev:server
-```
+The existing Wealthfolio SDK 2 adapter is preserved. `npm run bundle` creates
+its installable addon ZIP, while `npm run dev:preview` serves its **synthetic**
+host at `http://127.0.0.1:4178/dev/`. That preview is separate from the real
+standalone app. See [addon/README.md](addon/README.md).
 
-## Status
-
-**Build (v1).** Discovery is closed and the Wealthfolio addon is scaffolded.
-The repository contains code and figure-free documentation only. There is no
-cloud service, hosted deployment, or trade execution.
-
-See [docs/vision.md](docs/vision.md) and [docs/plan.md](docs/plan.md) for the
-experiment design.
+Build-only CI covers both distributions; nothing is deployed or published.
+The product direction and historical decisions are in [docs/plan.md](docs/plan.md).
 
 ## License
 

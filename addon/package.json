@@ -4,19 +4,35 @@
   "description": "Local-first IPS-aware companion for Wealthfolio: explains holdings, checks allocation against your Investment Policy Statement, and drafts rebalancing for sign-off. Never trades.",
   "type": "module",
   "main": "dist/addon.js",
-  "keywords": ["wealthfolio", "addon"],
+  "keywords": [
+    "wealthfolio",
+    "addon"
+  ],
   "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
     "dev:server": "wealthfolio dev",
-    "clean": "rm -rf dist",
-    "package": "mkdir -p dist && zip -r dist/$npm_package_name-$npm_package_version.zip manifest.json dist/ assets/ README.md",
+    "dev:preview": "vite --host 127.0.0.1 --port 4178 --strictPort",
+    "dev:standalone": "vite --host 127.0.0.1 --port 4179 --strictPort",
+    "build:standalone": "vite build --mode standalone",
+    "start": "node scripts/serve-standalone.mjs",
+    "clean": "node scripts/clean.mjs",
+    "package": "node scripts/package.mjs",
     "bundle": "npm run clean && npm run build && npm run package",
+    "validate:package": "node scripts/validate-package.mjs",
+    "test": "node scripts/test.mjs",
+    "test:packaging": "node --test tests/packaging.test.mjs",
+    "check:tracked-data": "node ../scripts/check-tracked-data.mjs --history",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "csv-parse": "^7.0.2",
     "@wealthfolio/addon-sdk": "^2.0.0",
     "@wealthfolio/ui": "^2.0.0",
     "react": "^19.1.1",
@@ -24,11 +40,13 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.13",
-    "@wealthfolio/addon-dev-tools": "^2.0.0",
     "@types/node": "^20.0.0",
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.1",
     "@vitejs/plugin-react": "^5.0.2",
+    "@wealthfolio/addon-dev-tools": "^2.0.0",
+    "fake-indexeddb": "^6.2.5",
+    "fflate": "^0.8.2",
     "rollup-plugin-external-globals": "^0.13.0",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",

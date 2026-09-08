@@ -16,8 +16,11 @@
   accounts and tax-efficient assets in taxable accounts; adds return without
   extra risk.
 - **Rebalancing** — restoring the portfolio to target weights. folio uses the
-  **5/25 rule**: act when an asset drifts 5 absolute or 25% relative percentage
-  points (attributed to Larry Swedroe). Prefer rebalancing with new cash first.
+  **5/25 rule**: review when an asset drifts 5 absolute percentage points or
+  25% of its target weight (attributed to Larry Swedroe). Prefer rebalancing
+  with new cash first; the flag is not a trade instruction.
+- **Basis point (bps)** — one hundredth of one percentage point. IPS weights,
+  bands and TER use basis points so their units are explicit.
 - **TWR (time-weighted return)** — return that removes the timing/size of
   cash flows; best for comparing strategy vs. a benchmark.
 - **MWR / IRR / XIRR (money-weighted return)** — return reflecting the
@@ -50,7 +53,7 @@
 
 - **Wealthfolio** — open-source, local-first portfolio tracker (Rust + Tauri +
   SQLite, AGPL, TypeScript addon SDK, OS-keyring secrets, true TWR/MWR). folio's
-  adopted spine.
+  optional host integration; standalone snapshot tracking does not require it.
 - **Portfolio Performance** — Java desktop, offline, EPL; fallback spine.
 - **beancount / hledger / Fava** — plaintext double-entry accounting with lots
   and price directives; the fallback "local ledger a skill can read".

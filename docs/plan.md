@@ -2,16 +2,22 @@
 
 > Drafted 2026-07-05 by agent, seeded from an internal deep-research report
 > (orchestrator-worker method, 6 research threads + 1 verifier).
-> **Awaiting owner review.** Figure-free.
+> **Build authorized; addon decision settled.** Implementation sequence updated
+> 2026-09-07: deterministic review and contribution drafts precede optional AI.
+> Figure-free.
+
+> **2026-09-08 owner revision:** standalone local folio with holdings snapshots
+> is now the primary form factor. Wealthfolio installation is not required.
+> The original addon and engine integration remain optional. See `standalone.md`.
 
 ## TL;DR
 
-folio is a **thin, local-first layer over Wealthfolio**, not a from-scratch
-portfolio app. Wealthfolio provides the on-device engine (SQLite, true
-TWR/MWR, multi-account, OS-keyring secrets, AGPL); folio adds an **IPS-aware
-AI layer** that explains holdings, checks the portfolio against the owner's
-rules, and drafts rebalancing for sign-off. **Math stays in code; the LLM only
-explains; nothing auto-trades; figures never leave the device.**
+folio is a **standalone local snapshot tracker with an optional Wealthfolio
+adapter**. Manual base-currency holdings feed the existing IPS rules,
+contribution drafts, and bounded explanations. Encrypted local storage contains
+accounts, current holdings, recorded snapshots and the optional IPS.
+It is not a new accounting or performance engine. **Math stays in code;
+nothing auto-trades; figures never leave the device.**
 
 ---
 
@@ -19,10 +25,10 @@ explains; nothing auto-trades; figures never leave the device.**
 
 ### In scope for v1
 
-- **Adopt Wealthfolio** (desktop build) as the local-first spine; data on
-  device only.
-- **Import holdings** via CSV / broker export (Interactive Brokers **Flex Web
-  Service** as the reference; manual CSV as the universal fallback).
+- **Run folio independently** in a local browser, with encrypted on-device
+  storage and a loopback-only static server; retain Wealthfolio as optional.
+- **Import holdings snapshots** through a generic per-account CSV format, with
+  explicit preview and replacement. Broker-specific translation is deferred.
 - **One-portfolio view** wiring in private pension, real estate (mark-to-model),
   and goal/cash funds alongside brokerage.
 - A **written IPS** (target allocation, 5/25 bands, cost ceiling, per-goal
@@ -43,6 +49,8 @@ explains; nothing auto-trades; figures never leave the device.**
 - ❌ Multi-user / sharing / sync beyond the owner's own devices.
 - ❌ Live PSD2 aggregation of *holdings* (not exposed by open banking).
 - ❌ Tax filing or definitive tax calculations (informational flags only).
+- Full transaction-history accounting, FX engines and performance returns from
+  the standalone snapshot data.
 
 ---
 
@@ -69,6 +77,25 @@ v1 proves or disproves:
 ---
 
 ## 3. Architecture (local-first)
+
+Current standalone path:
+
+```text
+Private manual entries / local CSV
+              |
+              v
+folio browser UI -> strict portfolio document -> encrypted IndexedDB
+              |                                      |
+              v                                      v
+snapshot adapter -> deterministic IPS rules     encrypted private backup
+              |
+              v
+new-cash draft + optional local explanation selection
+```
+
+The loopback Node server serves compiled assets only; it never receives
+portfolio records. The original optional Wealthfolio architecture is preserved
+below as historical integration context, not an installation prerequisite.
 
 ```
         Owner's device (no cloud, no subdomain)
@@ -97,7 +124,7 @@ v1 proves or disproves:
  └───────────────────────────────────────────────────────────┘
 ```
 
-### Vehicle decision (the key open choice — competing hypotheses)
+### Vehicle decision (settled; alternatives retained as historical context)
 
 | Rank | Form factor | For | Against |
 |---|---|---|---|
@@ -143,7 +170,9 @@ plaintext-ledger skill as the fallback if the addon SDK proves limiting.
 
 ## 7. Privacy & security
 
-- Local-first: on-device SQLite / plaintext, encrypted at rest; backups exportable.
+- Local-first: Wealthfolio owns its on-device ledger. folio encrypts its own IPS
+  at rest; it does not claim to encrypt the host SQLite database or broker files.
+  Full-disk encryption and private export backups remain the owner's responsibility.
 - Secrets in the **OS keychain** (Wealthfolio already does this); never in git.
 - Prefer **manual/broker-export import** over any credential sharing; never
   screen-scrape.
@@ -152,20 +181,37 @@ plaintext-ledger skill as the fallback if the addon SDK proves limiting.
 
 ## 8. MVP slice
 
-1. Wealthfolio running locally with real holdings imported (CSV/Flex).
-2. IPS written (in `.me`) and machine-readable (target allocation + bands + caps).
+1. Standalone folio running locally with manual holdings or a locally normalized
+   CSV snapshot; Wealthfolio is an optional alternative data adapter.
+2. IPS written and machine-readable (target allocation + bands + caps), kept
+   inside the encrypted workspace with a private exported backup.
 3. folio layer computes **allocation vs. IPS drift in code** and renders flags.
-4. LLM **explains** the flags and answers Q&A over local data (figure-free to
-   cloud, or fully local).
-5. Rebalancing **draft** (new-cash-first) presented for manual sign-off.
+4. Rebalancing **draft** (new-cash-first) presented for manual sign-off.
+5. Optional local model selects relevant, cited explanations from computed facts.
+   Model-generated arithmetic and open-ended financial advice are not rendered.
 
 ## 9. Milestones
 
-- **M0** — plan approved; form factor chosen (addon vs. skill).
-- **M1** — local Wealthfolio + import working; IPS drafted.
-- **M2** — deterministic IPS drift-check + flags.
-- **M3** — AI explain/Q&A layer with guardrails.
-- **M4** — rebalancing draft + measure H1–H4.
+- **M0** — addon chosen; portable delivery and SDK 2 integration contract.
+- **M1** — read-only snapshot adapter and encrypted IPS editor/import/export.
+- **M2** — deterministic allocation drift, scope exclusions, and TER coverage.
+- **M3** — new-cash contribution drafts with goal and emergency-fund gates.
+- **M4** — bounded, optional local explanation retrieval; then measure H1–H4
+  through actual use rather than declaring success from implementation alone.
+
+The corresponding rule behavior is implemented. On 2026-09-08 it was reused by
+the standalone app: manual accounts/holdings, account CSV replacement, recorded
+snapshot history, encrypted workspace storage, and a local production runtime.
+Wealthfolio acceptance is now optional. Private data-entry/import reconciliation
+and sustained-use evidence remain owner-side work.
+
+The IPS uses passphrase-encrypted IndexedDB, approved by the owner on 2026-09-07,
+with explicit manual import/export to the private vault. The addon never assumes
+arbitrary filesystem or direct SQLite access. See `ips-format.md`.
+
+Build-only CI runs generated-data regression coverage and packaging on Windows
+and Linux. No deployment, cloud data collection, or real financial fixture is
+part of this workflow.
 
 ## 10. Risks
 

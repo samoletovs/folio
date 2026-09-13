@@ -39,6 +39,13 @@
 9. **IPS format → RESOLVED (2026-09-07).** Versioned JSON with runtime
    validation, encrypted local persistence and manual vault import/export; see
    `ips-format.md`. A private desktop round-trip remains an acceptance step.
+10. **Snapshot reconciliation and provenance.** Which broker export confirms
+    per-position account/wrapper, instrument identity, fees, FX and settlement?
+    How should the owner resolve a tracker that mixes market value with dividends,
+    omits a new row from totals, or reports only an approximate cash balance?
+    The [import contract](plan.md#import-reconciliation-requirements-added-2026-09-09-not-yet-implemented)
+    defines the required behavior; implementing it and obtaining complete private
+    inputs remain open.
 
 ---
 

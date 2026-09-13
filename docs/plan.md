@@ -190,6 +190,41 @@ plaintext-ledger skill as the fallback if the addon SDK proves limiting.
 5. Optional local model selects relevant, cited explanations from computed facts.
    Model-generated arithmetic and open-ended financial advice are not rendered.
 
+### Import reconciliation requirements (added 2026-09-09; not yet implemented)
+
+An owner-supplied tracker exposed ambiguities that must be resolved before a
+snapshot can drive allocation or a new-cash draft. Use synthetic fixtures only
+in the repository; originals, figures and account mappings stay in private storage.
+
+- **Separate facts:** quantities, execution costs, current marks, cumulative
+  dividends, realized proceeds, fees and cash are distinct fields. A source column
+  labelled as a sale amount may actually contain marked value plus dividends;
+  do not infer a disposal from the label.
+- **Separate scopes:** distinguish open, sold and frozen positions, and map each
+  holding to its actual account/wrapper. A multi-account screenshot is not proof
+  that every row belongs to the account named in a new transaction.
+- **Reconcile rows and totals:** detect a newly added position missing from summary
+  formulas, inconsistent quantity/price/cost fields, and row P/L that disagrees with
+  proceeds less cost. Preserve source values and surface the discrepancy.
+- **Keep valuation honest:** mark frozen assets separately with explicit planning
+  treatment, not stale tradable value or a fabricated realized loss. Do not add
+  historical dividends to allocation when cash/reinvestment already includes them.
+- **Preserve uncertainty:** cash described as a lower bound is not exact order
+  capacity. Missing fees, FX rates/dates, settlement, identifiers or account mapping
+  remain unknown; request reconciliation before an executable-sized draft.
+- **Partial updates stay partial:** updating one purchase must not refresh the
+  observation dates of pensions, other brokers or old cash balances. No current
+  whole-portfolio compliance verdict without complete, dated inputs.
+- **Explain performance correctly:** distinguish price-only P/L from cumulative
+  dividend-inclusive P/L; reserve TWR/MWR for the engine with dated cash flows.
+  Compare benchmarks only over matching periods and currency conventions.
+
+Acceptance cases for the implementation: dividends counted once; a purchase omitted
+from a source total flagged; sold/frozen rows excluded from tradable allocation;
+an account split retained; unknown costs/cash not defaulted to zero or an exact
+balance; and a single-stock purchase not marked as completion of a diversified-core
+action. These are pending behavior tests, not claims of current addon functionality.
+
 ## 9. Milestones
 
 - **M0** — addon chosen; portable delivery and SDK 2 integration contract.

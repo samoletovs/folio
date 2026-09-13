@@ -47,6 +47,26 @@ Influenced: `vision.md` (entire structure), `plan.md` (entire structure),
 
 ---
 
+## 2026-09-09 - Owner spreadsheet reconciliation
+
+**Source:** Owner-provided brokerage tracker screenshot and follow-up, retained only
+in the private finance vault. No source image, holdings or amounts are stored here.
+**Provided by:** project owner.
+
+The example demonstrates why a spreadsheet summary is not a transaction ledger:
+sale-labelled fields can include dividends, summary formulas can omit newly added
+positions, and frozen or historical sold holdings can distort available-asset
+figures. A new purchase is also only a partial account update, not a fresh
+whole-portfolio valuation. Preserve provenance and unknown fields, reconcile rows
+against summaries, distinguish a completed satellite purchase from a core-allocation
+action, and require dated cash/account/FX evidence before sizing any draft.
+
+Influenced: `plan.md` (import reconciliation requirements and pending acceptance
+cases), `questions.md` (snapshot reconciliation and provenance). Documentation only;
+no import or reconciliation functionality is claimed as implemented.
+
+---
+
 ## Key external references (from the report — verify at build time)
 
 - **Wealthfolio** — github.com/wealthfolio/wealthfolio (local-first, AGPL,

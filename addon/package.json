@@ -34,7 +34,7 @@
   "dependencies": {
     "csv-parse": "^7.0.2",
     "@wealthfolio/addon-sdk": "^2.0.0",
-    "@wealthfolio/ui": "^2.0.0",
+    "@wealthfolio/ui": "^3.11.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

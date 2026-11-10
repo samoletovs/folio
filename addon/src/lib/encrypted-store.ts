@@ -6,6 +6,10 @@ export interface SavedDocument<T> {
 const STORE = 'vault';
 
 export function encryptedStore<T>(database: string, key: string, parseEnvelope: (input: unknown) => T, label: string) {
+  function validateEnvelope(input: unknown, message: string): T {
+    try { return parseEnvelope(input); } catch { throw new Error(message); }
+  }
+
   function openDatabase(): Promise<IDBDatabase> {
     if (!globalThis.indexedDB) {
       return Promise.reject(new Error('Local encrypted storage is unavailable. Use a supported local browser; no plaintext fallback is used.'));
@@ -33,7 +37,10 @@ export function encryptedStore<T>(database: string, key: string, parseEnvelope: 
         !('revision' in value) || typeof value.revision !== 'string') {
       throw new Error(`The local ${label} record is damaged. Restore an encrypted export.`);
     }
-    return { envelope: parseEnvelope(value.envelope), revision: value.revision };
+    return {
+      envelope: validateEnvelope(value.envelope, `The local ${label} record is damaged. Restore an encrypted export.`),
+      revision: value.revision,
+    };
   }
 
   async function read(): Promise<SavedDocument<T> | null> {
@@ -55,7 +62,7 @@ export function encryptedStore<T>(database: string, key: string, parseEnvelope: 
   }
 
   async function write(envelope: T | null, expectedRevision: string | null): Promise<SavedDocument<T> | null> {
-    const validated = envelope === null ? null : parseEnvelope(envelope);
+    const validated = envelope === null ? null : validateEnvelope(envelope, `The ${label} is not a valid encrypted record.`);
     const db = await openDatabase();
     return new Promise((resolve, reject) => {
       const transaction = db.transaction(STORE, 'readwrite');
